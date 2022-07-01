@@ -1,9 +1,15 @@
 const films = require("../data/films.json");
-// const people = require("../data/people.json");
 
 module.exports = {
-  async getCharactersFromMovie() {
-    // const urlFilms = films;
-    return films;
+  async getCharactersFromMovie(searchTerm) {
+    const filmsUrl = films
+      .filter((film) => {
+        return film.title.toLowerCase().includes(searchTerm.toLowerCase());
+      })
+      .map((film) => {
+        console.log(film);
+        return film;
+      });
+    return filmsUrl;
   },
 };

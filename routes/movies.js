@@ -5,7 +5,8 @@ const {
 } = require("../repositories/charactersRepository");
 
 router.get("/characters", async (req, res) => {
-  const result = await getCharactersFromMovie();
+  const searchTerm = req.query.searchTerm ? req.query.searchTerm.trim() : "";
+  const result = await getCharactersFromMovie(searchTerm);
   res.send(result);
 });
 
