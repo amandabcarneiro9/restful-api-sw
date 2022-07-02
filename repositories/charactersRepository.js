@@ -1,4 +1,5 @@
 const films = require("../data/films.json");
+const people = require("../data/people.json");
 
 module.exports = {
   async getCharactersFromMovie(searchTerm) {
@@ -7,9 +8,17 @@ module.exports = {
         return film.title.toLowerCase().includes(searchTerm.toLowerCase());
       })
       .map((film) => {
-        console.log(film);
-        return film;
+        return film.url;
       });
-    return filmsUrl;
+
+    const peopleFound = people.filter((person) => {
+      return person.films.some((filmUrl) => {
+        return filmsUrl.includes(filmUrl);
+      });
+    });
+
+    const results = peopleFound;
+
+    return results;
   },
 };
