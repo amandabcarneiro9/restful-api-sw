@@ -26,4 +26,7 @@ router.get("/characters", async (req, res) => {
   res.send(result);
 });
 
+//endpoint for planets
+// router.get("/planets", async, (req, res));
+
 module.exports = router;
