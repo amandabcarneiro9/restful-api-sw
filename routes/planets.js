@@ -1,13 +1,17 @@
 var express = require("express");
 var router = express.Router();
-const { getPlanetsFromMovie } = require("../repositories/planetsRepository");
+const {
+  getPlanetsByClimateWithDarkHairedPeople,
+} = require("../repositories/planetsRepository");
 
 router.get("/planets", async (req, res) => {
   const climateSearchTerm = req.query.climateSearchTerm
     ? req.query.climateSearchTerm.trim()
-    : "nothing";
+    : "";
 
-  const result = await getPlanetsFromMovie(climateSearchTerm);
+  const result = await getPlanetsByClimateWithDarkHairedPeople(
+    climateSearchTerm
+  );
   res.send(result);
 });
 
