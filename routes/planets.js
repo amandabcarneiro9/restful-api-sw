@@ -5,9 +5,9 @@ const { getPlanetsFromMovie } = require("../repositories/planetsRepository");
 router.get("/planets", async (req, res) => {
   const climateSearchTerm = req.query.climateSearchTerm
     ? req.query.climateSearchTerm.trim()
-    : "";
+    : "nothing";
 
-  const result = await getPlanetsFromMovie();
+  const result = await getPlanetsFromMovie(climateSearchTerm);
   res.send(result);
 });
 
