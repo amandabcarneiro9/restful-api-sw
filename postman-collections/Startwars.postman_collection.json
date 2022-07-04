@@ -1,0 +1,111 @@
+{
+	"info": {
+		"_postman_id": "5e3cef3d-42b9-4591-a673-1ad1516fae36",
+		"name": "Startwars Assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Search Characters By Gender",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/movies/characters?searchTerm=&gender=none",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"movies",
+						"characters"
+					],
+					"query": [
+						{
+							"key": "searchTerm",
+							"value": ""
+						},
+						{
+							"key": "gender",
+							"value": "none"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Characters with Sorting Options",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"animal\": \"gudo\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/movies/characters?sort_by=age&searchTerm=return&order_by=asc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"movies",
+						"characters"
+					],
+					"query": [
+						{
+							"key": "sort_by",
+							"value": "age"
+						},
+						{
+							"key": "searchTerm",
+							"value": "return"
+						},
+						{
+							"key": "order_by",
+							"value": "asc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Planets by climate search term with all dark hair characters",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/planets/dark_haired_characters?climateSearchTerm=arid",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"planets",
+						"dark_haired_characters"
+					],
+					"query": [
+						{
+							"key": "climateSearchTerm",
+							"value": "arid"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
