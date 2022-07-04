@@ -4,7 +4,7 @@ const {
   getPlanetsByClimateWithDarkHairedPeople,
 } = require("../repositories/planetsRepository");
 
-router.get("/planets", async (req, res) => {
+router.get("/dark_haired_characters", async (req, res) => {
   const climateSearchTerm = req.query.climateSearchTerm
     ? req.query.climateSearchTerm.trim()
     : "";
