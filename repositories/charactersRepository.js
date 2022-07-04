@@ -1,5 +1,6 @@
 const films = require("../data/films.json");
 const people = require("../data/people.json");
+const PAGE_SIZE = 30;
 
 module.exports = {
   async getCharactersFromMovie(searchTerm, gender, sortBy, orderBy) {
