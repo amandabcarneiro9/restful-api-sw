@@ -19,7 +19,7 @@ module.exports = {
     const results = peopleFound;
 
     if (sortBy) {
-      const sortFunction = decideSortFunctionByHeight(sortBy, orderBy);
+      const sortFunction = decideSortFunction(sortBy, orderBy);
       results.sort(sortFunction);
     }
 
@@ -27,9 +27,11 @@ module.exports = {
   },
 };
 
-const decideSortFunctionByHeight = (sortBy, orderBy) => {
+const decideSortFunction = (sortBy, orderBy) => {
   if (sortBy === "height" && orderBy === "asc") return sortByHeightAscending;
   if (sortBy === "height" && orderBy === "desc") return sortByHeightDescending;
+  if (sortBy === "age" && orderBy === "asc") return sortByAgeAscending;
+  if (sortBy === "age" && orderBy === "desc") return sortByAgeDescending;
 };
 
 const sortByHeightAscending = (person1, person2) =>
@@ -37,3 +39,16 @@ const sortByHeightAscending = (person1, person2) =>
 
 const sortByHeightDescending = (person1, person2) =>
   sortByHeightAscending(person2, person1);
+
+const sortByAgeAscending = (person1, person2) => {
+  if (person1.birth_year === "unknown") return -1;
+  if (person2.birth_year === "unknown") return 1;
+  return (
+    parseBirthYear(person1.birth_year) - parseBirthYear(person2.birth_year)
+  );
+};
+
+const parseBirthYear = (birthYear) => parseFloat(birthYear.replace("BBY", ""));
+
+const sortByAgeDescending = (person1, person2) =>
+  sortByAgeAscending(person2, person1);
