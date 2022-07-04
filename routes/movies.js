@@ -13,6 +13,8 @@ router.get("/characters", async (req, res) => {
   const gender = req.query.gender ? req.query.gender.trim() : "";
   const sortBy = req.query.sort_by ? req.query.sort_by.trim() : "";
   const orderBy = req.query.order_by ? req.query.order_by.trim() : "asc";
+  const pageCandidate = parseInt(req.query.page);
+  const page = isNaN(pageCandidate) ? 1 : pageCandidate;
 
   //validate the gender, sortBy, orderBy on request
   const errors = [
@@ -30,7 +32,8 @@ router.get("/characters", async (req, res) => {
     searchTerm,
     gender,
     sortBy,
-    orderBy
+    orderBy,
+    page
   );
   res.send(result);
 });
@@ -47,7 +50,7 @@ const validateSortBy = (sortBy) =>
 
 const validateOrderBy = (orderBy) =>
   orderBy &&
-  !POSSIBLE_SORTBY.includes(orderBy) &&
+  !POSSIBLE_ORDERBY.includes(orderBy) &&
   ` Order by ${orderBy} is not valid.`;
 
 module.exports = router;

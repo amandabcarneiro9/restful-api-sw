@@ -3,7 +3,7 @@ const people = require("../data/people.json");
 const PAGE_SIZE = 30;
 
 module.exports = {
-  async getCharactersFromMovie(searchTerm, gender, sortBy, orderBy) {
+  async getCharactersFromMovie(searchTerm, gender, sortBy, orderBy, page) {
     const filmsUrl = films
       .filter((film) => {
         return film.title.toLowerCase().includes(searchTerm.toLowerCase());
@@ -24,7 +24,18 @@ module.exports = {
       results.sort(sortFunction);
     }
 
-    return results;
+    const start = (page - 1) * PAGE_SIZE;
+    const end = start + PAGE_SIZE;
+    const pagination = peopleFound.slice(start, end);
+    const previousPage = page === 1 ? null : page - 1;
+    const nextPage = peopleFound.slice(end).length === 0 ? null : page + 1;
+
+    return {
+      count: results.length,
+      nextPage,
+      previousPage,
+      pagination,
+    };
   },
 };
 
